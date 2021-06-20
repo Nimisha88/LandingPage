@@ -1,0 +1,149 @@
+/* Color Palette */
+/* #D9D9D9, #E9E9E9, #CDCDCD, #003366, #0033FF */
+/* #025383, #fff, #EFF2F4, #18a4e0 */
+/* #0779E4, #4CBBB9, */
+/* #23374D, #1089ff, #E5E5E5, #eee, #77d8d8, #eff3c6 */
+
+.body {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-weight: 400;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Noto+Serif', sans-serif;
+}
+
+/* Navigation */
+.navbar-brand-logo {
+  width: 5%;
+}
+
+/* Hero */
+#hero {
+  background-color: #1089ff;
+  color: #eee;
+  position: relative;
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: minmax(100px, auto);
+  justify-content: space-between;
+  align-items: center;
+  grid-gap: 1%;
+  padding: 3% 7%;
+  height: 500px;
+}
+
+.hero-container-backImg::before {
+  content: "";
+  background-image: url('../image/blue-dotted-world.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.20;
+  pointer-events: none;
+}
+
+.coin-logo-container {
+  text-align: center;
+  vertical-align: middle;
+  background-color: #1089ff;
+}
+
+.coin-logo {
+  width: 12em;
+  height: 12em;
+  display: inline-block;
+  background-color: #1089ff;
+  border-radius: 50%;
+  border: 2px double #eee;
+  border-width: thick;
+  /* background-color: transparent; */
+  /* box-shadow:  4px 4px 4px 2px #0000002a; */
+  /* Animation */
+  -webkit-animation: coinFlip 4s infinite linear;
+  animation: coinFlip 4s infinite linear;
+}
+
+@keyframes coinFlip {
+  0%   {transform: rotateY(0deg);}
+  20%  {transform: rotateY(72deg);}
+  40%  {transform: rotateY(144deg);}
+  60%  {transform: rotateY(216deg);}
+  80%  {transform: rotateY(288deg);}
+  100% {transform: rotateY(360deg);}
+}
+
+.coin-logo-icon {
+  margin-top: 0.30em;
+  color: #EEEEEE;
+}
+
+/* .coin-logo::after {
+  background: linear-gradient(45deg, #1089ffff 0%, #eeeeeeff 56%, #18a4e0ff 96%);
+  border-top: 2px solid #77d8d84F;
+  border-left: 2px solid #77d8d84F;
+  border-bottom: 2px solid #1089ff4f;
+  border-right: 2px solid #1089ff4f;
+  box-shadow: inset 2px 2px 4px 4px #18a4e08f);
+} */
+
+/* .coin-logo-base {
+  border-radius: 50%;
+  width: 15em;
+  height: 15em;
+  background-color: transparent;
+  border: 2px solid #EEEEEE;
+  display: inline-block;
+} */
+
+.hero-cta {
+  text-align: right;
+}
+
+.hero-cta a {
+  margin: 5% 0 5% 3%;
+}
+
+/* Download Buttons */
+.dwnld-btn {
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   /* height: 5rem; */
+   /* line-height: 5px; */
+   color: #eee;
+   font-family: Helvetica;
+   width: 10rem;
+   font-size: 1em;
+   font-weight: 400;
+   padding: 1%;
+   background-color: #1089ff;
+   -webkit-box-shadow: 1px 1px 20px 0 #18a4e0;
+   -moz-box-shadow: 1px 1px 20px 0 #18a4e0;
+   box-shadow: 1px 1px 20px 0 #18a4e0;
+   text-shadow: 1px 1px 20px #18a4e0;
+   border: solid #eee 1px;
+   text-decoration: none;
+   display: inline-block;
+   cursor: pointer;
+   text-align: center;
+}
+
+.dwnld-btn:hover {
+   background: #77d8d8;
+   border: solid #eff3c6 1px;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   text-decoration: none;
+}
