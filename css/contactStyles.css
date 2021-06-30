@@ -1,0 +1,54 @@
+/* Contact */
+#contact {
+  background-color: #1099ff;
+  color: #e5e5e5;
+  text-align: center;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  /* grid-template-rows: minmax(1rem, auto); */
+  justify-content: center;
+  align-items: center;
+  /* grid-gap: 1%; */
+  grid-template-areas:
+    'lspc lspc lspc lspc fb insta twitter mail rspc rspc rspc rspc'
+    'cr cr cr cr cr cr cr cr cr cr cr cr';
+  padding: 3% 7%;
+  /* border: 2px solid blue; */
+}
+
+/* Remove inherit link styles */
+.contact-container a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.fb {
+  grid-area: fb;
+  /* border: 2px solid red; */
+}
+
+.insta {
+  grid-area: insta;
+  /* border: 2px solid red; */
+}
+
+.twitter {
+  grid-area: twitter;
+  /* border: 2px solid red; */
+}
+
+.mail {
+  grid-area: mail;
+  /* border: 2px solid red; */
+}
+
+.copyright {
+  color: #e5e5e5;
+  grid-area: cr;
+  font-size: 0.75rem;
+  padding-top: 3%;
+  /* border: 2px solid red; */
+}

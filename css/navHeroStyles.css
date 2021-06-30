@@ -1,0 +1,79 @@
+/* Navigation */
+.navbar-brand-logo {
+  width: 5%;
+}
+
+/* Hero */
+#hero {
+  background-color: #1089ff;
+  color: #eee;
+  position: relative;
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: minmax(100px, auto);
+  justify-content: space-between;
+  align-items: center;
+  grid-gap: 1%;
+  padding: 3% 7%;
+  height: 500px;
+}
+
+.hero-container-backImg::before {
+  content: "";
+  background-image: url('../image/blue-dotted-world.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.20;
+  pointer-events: none;
+}
+
+.hero-cta {
+  text-align: right;
+}
+
+.hero-cta a {
+  margin: 5% 0 5% 3%;
+}
+
+/* Download Buttons */
+.dwnld-btn {
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   /* height: 5rem; */
+   /* line-height: 5px; */
+   color: #eee;
+   font-family: Helvetica;
+   width: 10rem;
+   font-size: 1em;
+   font-weight: 400;
+   padding: 1%;
+   background-color: #1089ff;
+   -webkit-box-shadow: 1px 1px 20px 0 #18a4e0;
+   -moz-box-shadow: 1px 1px 20px 0 #18a4e0;
+   box-shadow: 1px 1px 20px 0 #18a4e0;
+   text-shadow: 1px 1px 20px #18a4e0;
+   border: solid #eee 1px;
+   text-decoration: none;
+   display: inline-block;
+   cursor: pointer;
+   text-align: center;
+}
+
+.dwnld-btn:hover {
+   background: #e5e5e5;
+   border: solid #1089ff 1px;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   text-decoration: none;
+}

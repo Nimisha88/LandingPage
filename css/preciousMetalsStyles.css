@@ -1,0 +1,65 @@
+#curr-profile-cta {
+  background-color: #e5e5e5;
+  background-image: linear-gradient(to right, #e5e5e5, #1099ff);
+  color: #1099ff;
+}
+
+.curr-profile-container {
+  padding: 3% 7%;
+}
+
+.curr-profile-container h3 {
+  margin-bottom: 3%;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.card-text {
+  color: #3a3d36;
+}
+
+/* .metal-spot-price {
+  color: #1099ff;
+} */
+
+
+/* Display background colour for precious metals */
+.card-body-ag, .card-body-au, .card-body-pt {
+  position: relative;
+  padding: 20%;
+}
+
+.card-body-ag::before {
+  content: "";
+  background: linear-gradient(to bottom right, #a8a9ad, #ededed, #a8a9ad);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.70;
+}
+
+.card-body-au::before {
+  content: "";
+  background: linear-gradient(to bottom right, #d4af37, #f7edc6, #d4af37);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.70;
+}
+
+.card-body-pt::before {
+  content: "";
+  background: linear-gradient(to bottom right, #bababa, #ffffff, #bababa);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.70;
+}
