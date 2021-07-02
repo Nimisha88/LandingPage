@@ -1,14 +1,14 @@
-#curr-profile-cta {
+#precious-metals {
   background-color: #e5e5e5;
   background-image: linear-gradient(to right, #e5e5e5, #1099ff);
   color: #1099ff;
 }
 
-.curr-profile-container {
+.precious-metals-container {
   padding: 3% 7%;
 }
 
-.curr-profile-container h3 {
+.precious-metals-container h2 {
   margin-bottom: 3%;
 }
 
@@ -19,11 +19,6 @@
 .card-text {
   color: #3a3d36;
 }
-
-/* .metal-spot-price {
-  color: #1099ff;
-} */
-
 
 /* Display background colour for precious metals */
 .card-body-ag, .card-body-au, .card-body-pt {

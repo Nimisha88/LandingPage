@@ -1,0 +1,74 @@
+@media (max-width: 767px) {
+  /* Hero/Nav */
+  .hero-do-nothing {
+    display: none;
+  }
+
+  /* Exchange CTA */
+  .conv-graph {
+    padding: 5% 1%;
+  }
+
+  /* Curreny Pair Info */
+  .coin-logo-container {
+    display: none;
+  }
+
+  .curr-pair-head {
+    color: #7f8fab;
+  }
+
+  .pair, .pair-rate {
+    color: #0779E4;
+  }
+
+}
+
+@media (min-width: 662px) and (max-width: 772px) {
+  /* Hero */
+  .hero-row {
+    padding: 20% 0;
+  }
+
+  /* Precious Metals */
+  .card-body-ag, .card-body-au, .card-body-pt {
+    position: relative;
+    padding: 15%;
+  }
+}
+
+@media (min-width: 581px) and (max-width: 661px) {
+  /* Hero */
+  .hero-row {
+    padding: 25% 0;
+  }
+
+  /* Precious Metals */
+  .card-body-ag, .card-body-au, .card-body-pt {
+    position: relative;
+    padding: 10%;
+  }
+}
+
+@media (max-width: 580px) {
+  /* Hero */
+  .hero-row {
+    padding: 30% 0;
+  }
+
+  /* Precious Metals */
+  .card-body-ag, .card-body-au, .card-body-pt {
+    position: relative;
+    padding: 7%;
+  }
+}
+
+@media (max-width: 604px) {
+  .hero-cta h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero-cta p {
+    font-size: 1.2rem;
+  }
+}

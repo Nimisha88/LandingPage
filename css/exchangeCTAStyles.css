@@ -5,12 +5,12 @@
 }
 
 .exchange-cta-container {
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: minmax(100px, auto);
   grid-gap: 1%;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
   padding: 3% 7%;
   /* border: 2px solid red; */
 }
@@ -31,7 +31,7 @@
 
 .conv-graph {
   display: none;
-  padding: 5% 10%;
+  padding: 0 1% 0 5%;
 }
 
 .conv-graph-canvas {

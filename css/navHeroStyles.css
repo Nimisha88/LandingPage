@@ -1,24 +1,28 @@
-/* Navigation */
+Navigation
 .navbar-brand-logo {
   width: 5%;
+}
+
+.nav-link {
+  text-align: right;
 }
 
 /* Hero */
 #hero {
   background-color: #1089ff;
-  color: #eee;
+  color: #eeeeee;
   position: relative;
 }
 
 .hero-container {
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: minmax(100px, auto);
   justify-content: space-between;
   align-items: center;
-  grid-gap: 1%;
+  grid-gap: 1%; */
   padding: 3% 7%;
-  height: 500px;
+  /* height: 500px; */
 }
 
 .hero-container-backImg::before {
@@ -40,8 +44,20 @@
   text-align: right;
 }
 
+.hero-cta h1 {
+  font-size: 3.5rem;
+}
+
+.hero-cta p {
+  font-size: 1.5rem;
+}
+
 .hero-cta a {
   margin: 5% 0 5% 3%;
+}
+
+.hero-row {
+  padding: 15% 0;
 }
 
 /* Download Buttons */

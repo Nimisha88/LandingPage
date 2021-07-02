@@ -28,6 +28,9 @@ const coinbaseBaseURL = "https://api.coinbase.com/";
 const coinbaseExchangeRateAPI = "/v2/exchange-rates";
 const coinbaseCurrenciesAPI = "/v2/currencies";
 const coinbaseTimeAPI = "/v2/time";
+const frankfuterBaseURL = "https://api.frankfurter.app/";
+const frankfuterCurrenciesAPI = "currencies";
+const frankfuterLatestRatesAPI = "latest";
 
 
 // ----------------------------------------------------------------------------
@@ -43,6 +46,7 @@ const baseCurrAmtInput = document.getElementById("baseCurrencyAmt");
 const convCurrAmtInput = document.getElementById("convCurrencyAmt");
 const lastUpdatedAtEle = document.querySelector(".last-updated-at");
 const convGraphCanvas = document.querySelector(".conv-graph");
+const canvasEle = document.getElementById("currChart");
 
 let currencies = [];
 let rates = [];
@@ -50,6 +54,7 @@ let baseCurrID;
 let convCurrID;
 let lastUpdatedAt;
 let dataForGraph;
+let currChart;
 
 let getConvRates = (baseCurr, convCurr) => (rates[convCurr]/rates[baseCurr]).toFixed(2);
 let getLastUpdatedAt = () => lastUpdatedAt;
@@ -68,8 +73,7 @@ async function initExchangeCTA() {
   lastUpdatedAtEle.textContent = await getLastUpdatedAt().toUTCString();
   setCurrenciesInConvCTA();
   addEventListenersOnExchangeCTA();
-  dataForGraph = fetchDataForGraph();
-  showOrHideGraphContainer();
+  plotGraph();
 }
 
 initExchangeCTA();
@@ -89,16 +93,26 @@ let currencyDropDownElement = (eleID, eleName) => {
 
 let setCurrenciesInConvCTA = () => {
   let currencyFragment = new DocumentFragment();
-  for (currency of currencies) {
+
+  /* for (currency of currencies) {
     currencyFragment.appendChild(currencyDropDownElement(currency.id, currency.name));
+  } */
+
+  currenciesID = Object.keys(currencies);
+  currenciesName = Object.values(currencies);
+
+  for (let i=0; i<currenciesID.length; i++) {
+    currencyFragment.appendChild(currencyDropDownElement(currenciesID[i], currenciesName[i]));
   }
+
   baseCurrDropDown.appendChild(currencyFragment.cloneNode(true));
   convCurrDropDown.appendChild(currencyFragment);
 }
 
 async function fetchCurrencies() {
   try {
-    const response = await fetch(coinbaseBaseURL + coinbaseCurrenciesAPI);
+    // const response = await fetch(coinbaseBaseURL + coinbaseCurrenciesAPI);
+    const response = await fetch(frankfuterBaseURL + frankfuterCurrenciesAPI);
 
     if (response.status != 200) {
       console.log("Looks like there was a problem. Status Code: " + response.status);
@@ -106,7 +120,8 @@ async function fetchCurrencies() {
     }
 
     const json = await response.json();
-    return (JSON.parse(JSON.stringify(json))).data;
+    // return (JSON.parse(JSON.stringify(json))).data;
+    return JSON.parse(JSON.stringify(json));
   }
   catch(error) {
       console.log("Request Failed", error);
@@ -197,7 +212,7 @@ function addEventListenersOnExchangeCTA() {
     changeCurrNameInExchangeCTA(baseCurrNameSpan, baseCurrDropDown);  // Change the Currency Name
     convCurrRateSpan.textContent = getConvRates(baseCurrID, convCurrID);  // Change Conversion Rate
     changeAmtInputInExchangeCTA("conv", baseCurrID, convCurrID);  // Change Conversion Amount
-    showOrHideGraphContainer(); // Change Graph
+    plotGraph(); // Change Graph
   });
 
   /* Add Event Listener to Conversion Currency DropDown */
@@ -206,7 +221,7 @@ function addEventListenersOnExchangeCTA() {
     changeCurrNameInExchangeCTA(convCurrNameSpan, convCurrDropDown);  // Change the Currency Name
     convCurrRateSpan.textContent = getConvRates(baseCurrID, convCurrID);  // Change Conversion Rate
     changeAmtInputInExchangeCTA("conv", baseCurrID, convCurrID);  // Change Conversion Amount
-    showOrHideGraphContainer(); // Change Graph
+    plotGraph(); // Change Graph
   });
 
   /* Add Event Listener to Base Currency Amount Input */
@@ -225,11 +240,6 @@ function addEventListenersOnExchangeCTA() {
 // ----------------------------------------------------------------------------
 // Initialize Currency Pair
 // ----------------------------------------------------------------------------
-const frankfuterBaseURL = "https://api.frankfurter.app/";
-const frankfuterCurrenciesAPI = "currencies";
-const frankfuterLatestRatesAPI = "latest";
-// const frankfuterCurrPairAPI = ;
-
 function CurrencyPair(baseCurr, convCurr) {
   this.baseCurr = baseCurr;
   this.convCurr = convCurr;
@@ -343,38 +353,6 @@ async function initializeCurrencyPairSection() {
 
 initializeCurrencyPairSection();
 
-// ----------------------------------------------------------------------------
-// Fetch data for Graph
-// ----------------------------------------------------------------------------
-
-async function fetchDataForGraph() {
-  let graphStartDate =  (new Date(Date.now() - (90*24*60*60*1000))).toISOString().slice(0,10);
-
-  try {
-    const response = await fetch(`${frankfuterBaseURL}${graphStartDate}..?from=${baseCurrID}&to=${convCurrID}`);
-
-    if (response.status != 200) {
-      console.log('Looks like there was a problem. Status Code: ' + response.status);
-      throw "Response Status Code is NOT 200.";
-    }
-
-    const json = await response.json();
-    return JSON.parse(JSON.stringify(json));
-  }
-  catch(error) {
-    console.log('Request Failed', error);
-  }
-}
-
-function showOrHideGraphContainer() {
-  console.log(baseCurrID+"/"+convCurrID);
-  if ((["USD", "EUR", "INR"].includes(baseCurrID)) & (["USD", "EUR", "INR"].includes(convCurrID))) {
-    convGraphCanvas.style.display = "inline";
-  } else {
-    convGraphCanvas.style.display = "none";
-  }
-}
-
 
 // ----------------------------------------------------------------------------
 // Metals API
@@ -393,7 +371,6 @@ async function fetchMetalRates() {
     }
 
     const json = await response.json();
-    console.log(JSON.parse(JSON.stringify(json)));
     return JSON.parse(JSON.stringify(json));
   }
   catch(error) {
@@ -415,22 +392,98 @@ initializeMetalsInfo();
 
 
 // ----------------------------------------------------------------------------
+// Fetch data for Graph
+// ----------------------------------------------------------------------------
+
+async function fetchDataForGraph() {
+  let graphStartDate =  (new Date(Date.now() - (90*24*60*60*1000))).toISOString().slice(0,10);
+
+  try {
+    const response = await fetch(`${frankfuterBaseURL}${graphStartDate}..?from=${baseCurrID}&to=${convCurrID}`);
+
+    if (response.status != 200) {
+      console.log('Looks like there was a problem. Status Code: ' + response.status);
+      throw "Response Status Code is NOT 200.";
+    }
+
+    const json = await response.json();
+    return (JSON.parse(JSON.stringify(json))).rates;
+  }
+  catch(error) {
+    console.log('Request Failed', error);
+  }
+}
+
+function showOrHideGraphContainer() {
+  // console.log(baseCurrID+"/"+convCurrID);
+  if (baseCurrID != convCurrID) {
+    convGraphCanvas.style.display = "inline";
+    return true;
+  } else {
+    convGraphCanvas.style.display = "none";
+    return false;
+  }
+}
+
+
+// ----------------------------------------------------------------------------
 // Graph - chart.js
 // ----------------------------------------------------------------------------
 
-async function plotGraph() {
-  let graphYAxisData = [83, 84, 89, 76, 79, 90];
-  let graphXAxisData = [20210621, 20210622, 20210623, 20210624, 20210625, 20210626];
+async function fetchXAxisTimeLineData() {
+  const graphDataKeys = Object.keys(dataForGraph);
+  const interval = Math.floor(graphDataKeys.length/4);
 
-  let canvasEle = document.getElementById("myChart");
-  let myChart = new Chart(canvasEle, {
+  let xAxisDataArr = [];
+  for (let i = 0; i<graphDataKeys.length; i++) {
+    xAxisDataArr.push("");
+  }
+
+  xAxisDataArr[interval] = (new Date(graphDataKeys[interval])).toDateString().slice(4, 10);
+  xAxisDataArr[interval*2] = (new Date(graphDataKeys[interval*2])).toDateString().slice(4, 10);
+  xAxisDataArr[interval*3] = (new Date(graphDataKeys[interval*3])).toDateString().slice(4, 10);
+  // console.log(xAxisDataArr);
+
+  // return [20210621, 20210622, 20210623, 20210624, 20210625, 20210626];
+  return xAxisDataArr;
+}
+
+async function fetchYAxisCurrData() {
+  const graphDataValues = Object.values(dataForGraph);
+
+  let yAxisDataArr = [];
+  for (graphData of graphDataValues) {
+    yAxisDataArr.push(Object.values(graphData)[0]);
+  }
+  // console.log(yAxisDataArr);
+
+  // return [83, 84, 89, 76, 79, 90];
+  return yAxisDataArr;
+}
+
+
+async function plotGraph() {
+
+  if (!showOrHideGraphContainer()) {
+    return;
+  }
+
+  dataForGraph = await fetchDataForGraph();
+  let graphXAxisData = await fetchXAxisTimeLineData();
+  let graphYAxisData = await fetchYAxisCurrData();
+
+  if (typeof currChart != 'undefined') {
+    currChart.destroy();
+  }
+
+  currChart = new Chart(canvasEle, {
     type: 'line',
     data: {
       labels: graphXAxisData,
       datasets: [
         {
           data: graphYAxisData,
-          label: "Euro Against USD",
+          label: `${convCurrNameSpan.textContent} against ${baseCurrNameSpan.textContent}`,
           borderColor: "#3e95cd",
           fill: false
         }
@@ -442,11 +495,14 @@ async function plotGraph() {
         x: {
           grid:{
             display: false
+          },
+          ticks: {
+            autoSkip: false
           }
         },
         y: {
-          suggestedMin: 70,
-          suggestedMax: 100,
+          // suggestedMin: 70,
+          // suggestedMax: 100,
           grid:{
             display: false
           }
@@ -455,5 +511,3 @@ async function plotGraph() {
     },
   });
 }
-
-plotGraph();

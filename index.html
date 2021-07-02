@@ -49,154 +49,167 @@
           <li class="nav-item">
             <a class="nav-link" href="#curr-pair-info">QuickLook</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#precious-metals">Metals</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
   <header id="hero">
-    <div class="hero-container hero-container-backImg">
-      <!-- <div class="coin-logo-container">
-        <div class="coin-logo">
-          <i class="coin-logo-icon fas fa-dollar-sign fa-7x"></i>
+    <div class="hero-container hero-container-backImg container-fluid">
+      <div class="row align-items-center hero-row">
+        <!-- <div class="hero-do-nothing col-md-3"></div> -->
+        <div class="hero-cta">
+          <p>Need a <strong><em>swap</em></strong> to spend like a Roman in Rome?</p>
+          <h1>We've got your back!</h1>
+          <a href="#hero" class="dwnld-btn" onclick="alert('Oops something went wrong! Try again after some time.')">Download <i class="fab fa-apple"></i></a>
+          <a href="#hero" class="dwnld-btn" onclick="alert('Oops something went wrong! Try again after some time.')">Download <i class="fab fa-google-play"></i></a>
         </div>
-      </div> -->
-      <div class="do-nothing"></div>
-      <div class="hero-cta">
-        <p>Need to <strong><em>Swap It</em></strong> to be a Roman in Rome?</p>
-        <h1>We've got your back!</h1>
-        <a href="#hero" class="dwnld-btn" onclick="alert('Oops something went wrong! Try again after some time.')">Download <i class="fab fa-apple"></i></a>
-        <a href="#hero" class="dwnld-btn" onclick="alert('Oops something went wrong! Try again after some time.')">Download <i class="fab fa-google-play"></i></a>
       </div>
     </div>
     <!-- <img src="image/connecting-dots.jpeg" alt="Exchange Currency" width=100% height=30%> -->
   </header>
 
   <section id="exchange-cta">
-    <div class="exchange-cta-container">
-      <div class="currency-container">
-        <h6 class="base-curr"><span id="baseCurrUnit">1</span> <span id="baseCurrName">US Dollar</span> equals</h6>
-        <h3 class="conv-curr"><span id="convCurrRate">0.83</span> <span id="convCurrName">Euro</span></h3>
-        <p class="last-updated-at"></p>
-        <div class="input-group mb-3 ex-cta-event-listener">
-          <input id="baseCurrencyAmt" type="number" class="form-control" min="0">
-          <select class="form-select conv-dropdown" id="baseCurrencyDD">
-            <option class="conv-dd-opt" value="USD" selected>US Dollar</option>
-          </select>
+    <div class="exchange-cta-container container-fluid">
+      <div class="row align-items-center">
+        <div class="currency-container col-md-6">
+          <h6 class="base-curr"><span id="baseCurrUnit">1</span> <span id="baseCurrName">US Dollar</span> equals</h6>
+          <h3 class="conv-curr"><span id="convCurrRate">0.83</span> <span id="convCurrName">Euro</span></h3>
+          <p class="last-updated-at"></p>
+          <div class="input-group mb-3 ex-cta-event-listener">
+            <input id="baseCurrencyAmt" type="number" class="form-control" min="0">
+            <select class="form-select conv-dropdown" id="baseCurrencyDD">
+              <option class="conv-dd-opt" value="USD" selected>United States Dollar</option>
+            </select>
+          </div>
+          <div class="input-group mb-3 ex-cta-event-listener">
+            <input id="convCurrencyAmt" type="number" class="form-control" min="0">
+            <select class="form-select conv-dropdown" id="convCurrencyDD">
+              <option class="conv-dd-opt" value="EUR" selected>Euro</option>
+            </select>
+          </div>
+          <p class="curr-data-src">*** Data provided by <em>Coinbase</em> and <em>Frankfuter</em> ***</p>
         </div>
-        <div class="input-group mb-3 ex-cta-event-listener">
-          <input id="convCurrencyAmt" type="number" class="form-control" min="0">
-          <select class="form-select conv-dropdown" id="convCurrencyDD">
-            <option class="conv-dd-opt" value="EUR" selected>Euro</option>
-          </select>
+        <div class="conv-graph col-md-6">
+          <canvas class="conv-graph-canvas" id="currChart"></canvas>
         </div>
-        <p class="curr-data-src">*** Data provided by <em>Coinbase</em> and <em>Frankfuter</em> ***</p>
-      </div>
-      <div class="conv-graph">
-        <canvas class="conv-graph-canvas" id="myChart"></canvas>
       </div>
     </div>
   </section>
 
   <section id="curr-pair-info">
-    <div class="curr-pair-info-container">
-      <div class="coin-logo-container">
-        <div class="coin-logo">
-          <i class="coin-logo-icon fas fa-dollar-sign fa-7x"></i>
+    <div class="curr-pair-info-container container-fluid">
+      <div class="row align-items-center">
+        <div class="coin-logo-container col-md-6">
+          <div class="coin-logo">
+            <i class="coin-logo-icon fas fa-dollar-sign fa-7x"></i>
+          </div>
         </div>
-      </div>
-      <div class="curr-pair-change-container">
-        <h3>Popular Exchange Rates</h3>
-        <table class="curr-pair" width="100%">
-          <thead>
-            <th class="curr-pair-head">Currency</th>
-            <th class="curr-pair-head">Rate</th>
-            <th class="curr-pair-head">Change</th>
-          </thead>
-          <tr class="pair-row">
-            <td class="pair">EUR / USD</td>
-            <td class="pair-rate">1.191</td>
-            <td class="pair-change"><i class="fas fa-chevron-circle-down rate-down"></i></td>
-          </tr>
-          <tr class="pair-row">
-            <td class="pair">USD / JPY</td>
-            <td class="pair-rate">110.94</td>
-            <td class="pair-change"><i class="fas fa-chevron-circle-up rate-up"></i></td>
-          </tr>
-          <tr class="pair-row">
-            <td class="pair">GBP / USD</td>
-            <td class="pair-rate">1.3896</td>
-            <td class="pair-change"><i class="fas fa-chevron-circle-down rate-down"></i></td>
-          </tr>
-          <tr class="pair-row">
-            <td class="pair">USD / CAD</td>
-            <td class="pair-rate">1.2332</td>
-            <td class="pair-change"><i class="fas fa-chevron-circle-up rate-up"></i></td>
-          </tr>
-          <tr class="pair-row">
-            <td class="pair">AUD / USD</td>
-            <td class="pair-rate">0.75605</td>
-            <td class="pair-change"><i class="fas fa-chevron-circle-down rate-down"></i></td>
-          </tr>
-          <tr class="pair-row">
-            <td class="pair">USD / INR</td>
-            <td class="pair-rate">74.299</td>
-            <td class="pair-change"><i class="fas fa-chevron-circle-up rate-up"></i></td>
-          </tr>
-        </table>
+        <div class="curr-pair-change-container col-md-6">
+          <h2>Popular Exchange Rates</h2>
+          <table class="curr-pair" width="100%">
+            <thead>
+              <th class="curr-pair-head">Currency</th>
+              <th class="curr-pair-head">Rate</th>
+              <th class="curr-pair-head">Change</th>
+            </thead>
+            <tr class="pair-row">
+              <td class="pair">EUR / USD</td>
+              <td class="pair-rate">1.191</td>
+              <td class="pair-change"><i class="fas fa-chevron-circle-down rate-down"></i></td>
+            </tr>
+            <tr class="pair-row">
+              <td class="pair">USD / JPY</td>
+              <td class="pair-rate">110.94</td>
+              <td class="pair-change"><i class="fas fa-chevron-circle-up rate-up"></i></td>
+            </tr>
+            <tr class="pair-row">
+              <td class="pair">GBP / USD</td>
+              <td class="pair-rate">1.3896</td>
+              <td class="pair-change"><i class="fas fa-chevron-circle-down rate-down"></i></td>
+            </tr>
+            <tr class="pair-row">
+              <td class="pair">USD / CAD</td>
+              <td class="pair-rate">1.2332</td>
+              <td class="pair-change"><i class="fas fa-chevron-circle-up rate-up"></i></td>
+            </tr>
+            <tr class="pair-row">
+              <td class="pair">AUD / USD</td>
+              <td class="pair-rate">0.75605</td>
+              <td class="pair-change"><i class="fas fa-chevron-circle-down rate-down"></i></td>
+            </tr>
+            <tr class="pair-row">
+              <td class="pair">USD / INR</td>
+              <td class="pair-rate">74.299</td>
+              <td class="pair-change"><i class="fas fa-chevron-circle-up rate-up"></i></td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="curr-profile-cta">
-    <div class="curr-profile-container">
-      <h3>Precious Metals</h3>
-      <div class="card-group">
-        <div class="card me-5 rounded-3 shadow-sm">
-          <div class="card-body card-body-ag">
-            <div class="card-text">
-              <h4>Silver: Ag</h4>
-              <p class="metal-spot-price">26.11 toz</p>
+  <section id="precious-metals">
+    <div class="precious-metals-container container-fluid">
+      <div class="row align-items-center">
+        <h2>Precious Metals</h2>
+      </div>
+      <div class="row align-items-center">
+        <div class="card-group">
+          <div class="card me-3 rounded-3 shadow-sm">
+            <div class="card-body card-body-ag">
+              <div class="card-text">
+                <h4>Silver: Ag</h4>
+                <p class="metal-spot-price">26.11 toz</p>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- <div class="card-gap"></div> -->
-        <div class="card me-5 rounded-3 shadow-sm">
-          <div class="card-body card-body-au">
-            <div class="card-text">
-              <h4>Gold: Au</h4>
-              <p class="metal-spot-price">1769.71 toz</p>
+          <!-- <div class="card-gap"></div> -->
+          <div class="card me-3 rounded-3 shadow-sm">
+            <div class="card-body card-body-au">
+              <div class="card-text">
+                <h4>Gold: Au</h4>
+                <p class="metal-spot-price">1769.71 toz</p>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- <div class="card-gap"></div> -->
-        <div class="card rounded-3 shadow-sm">
-          <div class="card-body card-body-pt">
-            <div class="card-text">
-              <h4>Platinum: Pt</h4>
-              <p class="metal-spot-price">1070.69 toz</p>
+          <!-- <div class="card-gap"></div> -->
+          <div class="card me-3 rounded-3 shadow-sm">
+            <div class="card-body card-body-pt">
+              <div class="card-text">
+                <h4>Platinum: Pt</h4>
+                <p class="metal-spot-price">1070.69 toz</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
   <footer id="contact">
-    <div class="contact-container">
-      <div class="fb footer">
-        <a href="#footer" onclick="alert('Oops something went wrong! Try again after some time.')"><i class="fab fa-facebook fa-2x"></i></a>
+    <div class="contact-container container-fluid">
+      <div class="row align-items-center">
+        <div class="contact-do-nothing col-4"></div>
+        <div class="fb footer col-1">
+          <a href="#footer" onclick="alert('Oops something went wrong! Try again after some time.')"><i class="fab fa-facebook fa-2x"></i></a>
+        </div>
+        <div class="insta footer col-1">
+          <a href="#footer" onclick="alert('Oops something went wrong! Try again after some time.')"><i class="fab fa-instagram-square fa-2x"></i></a>
+        </div>
+        <div class="twitter footer col-1">
+          <a href="#footer" onclick="alert('Oops something went wrong! Try again after some time.')"><i class="fab fa-twitter fa-2x"></i></a>
+        </div>
+        <div class="mail footer col-1">
+          <a href="#footer" onclick="alert('Oops something went wrong! Try again after some time.')"><i class="fas fa-mail-bulk fa-2x"></i></a>
+        </div>
+        <div class="contact-do-nothing col-4"></div>
       </div>
-      <div class="insta footer">
-        <a href="#footer" onclick="alert('Oops something went wrong! Try again after some time.')"><i class="fab fa-instagram-square fa-2x"></i></a>
+      <div class="row align-items-center">
+        <div class="copyright footer">© 2021 Swap It. All rights reserved.</div>
       </div>
-      <div class="twitter footer">
-        <a href="#footer" onclick="alert('Oops something went wrong! Try again after some time.')"><i class="fab fa-twitter fa-2x"></i></a>
-      </div>
-      <div class="mail footer">
-        <a href="#footer" onclick="alert('Oops something went wrong! Try again after some time.')"><i class="fas fa-mail-bulk fa-2x"></i></a>
-      </div>
-      <div class="copyright footer">© 2021 Swap It. All rights reserved.</div>
     </div>
   </footer>
 

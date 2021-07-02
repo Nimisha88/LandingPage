@@ -4,6 +4,7 @@
 @import "currencyPairInfoStyles.css";
 @import "preciousMetalsStyles.css";
 @import "contactStyles.css";
+@import "mediaStyles.css";
 
 .body {
   font-family: 'Montserrat', sans-serif;
@@ -21,4 +22,4 @@ h1, h2, h3, h4, h5, h6 {
 /* #025383, #fff, #EFF2F4, #18a4e0 */
 /* #0779E4, #4bbbb4, #77d8d8, #eff3c6 */
 /* #23374d, #1089ff, #e5e5e5, #eee */
-/* #1dd166, #7f8fab, #b1b2b8 */
+/* #1dd166, #7f8fab, #b1b2b8, #0779E4 */
