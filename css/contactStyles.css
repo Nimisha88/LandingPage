@@ -16,6 +16,11 @@
   text-decoration: none;
 }
 
+.contact-container a:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .copyright {
   color: #e5e5e5;
   grid-area: cr;
