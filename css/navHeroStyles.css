@@ -15,12 +15,6 @@ Navigation
 }
 
 .hero-container {
-  /* display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: minmax(100px, auto);
-  justify-content: space-between;
-  align-items: center;
-  grid-gap: 1%; */
   padding: 3% 7%;
   /* height: 500px; */
 }

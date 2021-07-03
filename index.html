@@ -27,30 +27,31 @@
 </head>
 
 <body>
-  <nav id="navigation" class="navbar navbar-expand-md navbar-dark bg-primary">
+  <nav id="navigation" class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
     <div class="container-fluid">
       <img class="d-inline-block align-text-center" src="https://image.flaticon.com/icons/png/512/1372/1372789.png" width="45em" height="45em">
       <a class="navbar-brand" href="#">
         &nbsp;Swap It
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <!-- aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" -->
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto navbar-nav-scroll">
+          <!-- <li class="nav-item">
+            <a class="nav-link active" href="#hero">Home</a>
+          </li> -->
           <li class="nav-item">
-            <a class="nav-link active" href="#navigation">Home</a>
-            <!-- aria-current="page"  -->
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#exchange-cta">Convert</a>
+            <a class="nav-link" href="#exchange-cta">Calculator</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#curr-pair-info">QuickLook</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#precious-metals">Metals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
           </li>
         </ul>
       </div>
@@ -63,6 +64,10 @@
         <div class="hero-cta">
           <p>Need a <strong><em>swap</em></strong> to spend like a Roman in Rome?</p>
           <h1>We've got your back!</h1>
+          <p>
+            Fast &bull; Secure &bull; Reliable
+            <!-- <br />Download now! -->
+          </p>
           <a href="#hero" class="dwnld-btn" onclick="alert('Oops something went wrong! Try again after some time.')">Download <i class="fab fa-apple"></i></a>
           <a href="#hero" class="dwnld-btn" onclick="alert('Oops something went wrong! Try again after some time.')">Download <i class="fab fa-google-play"></i></a>
         </div>
@@ -74,6 +79,10 @@
   <section id="exchange-cta">
     <div class="exchange-cta-container container-fluid">
       <div class="row align-items-center">
+        <h2>Currency Calculator</h2>
+        <p>
+          With this convenient tool you can review latest rates and market history for last 3 months to analyse rate trends by selcting any available currency pair from the select list.
+        </p>
         <div class="currency-container col-md-6">
           <h6 class="base-curr"><span id="baseCurrUnit">1</span> <span id="baseCurrName">US Dollar</span> equals</h6>
           <h3 class="conv-curr"><span id="convCurrRate">0.83</span> <span id="convCurrName">Euro</span></h3>
@@ -109,6 +118,7 @@
         </div>
         <div class="curr-pair-change-container col-md-6">
           <h2>Popular Exchange Rates</h2>
+          <p>A quick glance at world's commonly traded currency pair</p>
           <table class="curr-pair" width="100%">
             <thead>
               <th class="curr-pair-head">Currency</th>
@@ -154,7 +164,8 @@
   <section id="precious-metals">
     <div class="precious-metals-container container-fluid">
       <div class="row align-items-center">
-        <h2>Precious Metals</h2>
+        <h2>Metals Trading</h2>
+        <p>Metals like Silver, Gold and Platinum have been recognized as precious since long. Metals trading usually involves these metals and is closely linked to the outlook for the overall global economy and major currencies.</p>
       </div>
       <div class="row align-items-center">
         <div class="card-group">
@@ -186,11 +197,21 @@
           </div>
         </div>
       </div>
+      <div class="row align-items-center">
+        <p class="metals-note">Precious metals are thought to be a good portfolio diversifier and hedge against inflation - but gold, perhaps the most well-known such metal, is not the only one out there for investors. Silver and Platinum are two commodities that can be added to your precious metals portfolio, and both has its own unique risks and opportunities.</p>
+      </div>
     </div>
   </section>
 
   <footer id="contact">
     <div class="contact-container container-fluid">
+      <div class="row align-items-center">
+        <h2>Come trade with #1 exchange broker in town!</h2>
+        <p>Swap It has been empowering exchange traders since 2021. It's time for you to experience the confidnce and peace of mind that comes from trading with a reliable broker.</p>
+      </div>
+      <div class="row align-items-center">
+        <span class="contact-us"><h5>Contact Us</h5></span>
+      </div>
       <div class="row align-items-center">
         <div class="contact-do-nothing col-4"></div>
         <div class="fb footer col-1">

@@ -10,6 +10,22 @@
   /* border: 2px solid blue; */
 }
 
+.contact-container h2 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 0.5px solid #e5e5e544;
+}
+
+.contact-us {
+  /* display: inline; */
+  margin-bottom: 2rem;
+  /* border-bottom: 0.5px solid #e5e5e544; */
+}
+
+.contact-container p {
+  margin-bottom: 3rem;
+}
+
 /* Remove inherit link styles */
 .contact-container a {
   color: inherit;

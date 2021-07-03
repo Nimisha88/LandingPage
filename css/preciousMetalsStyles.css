@@ -1,6 +1,6 @@
 #precious-metals {
   background-color: #e5e5e5;
-  background-image: linear-gradient(to right, #e5e5e5, #1099ff);
+  background-image: linear-gradient(to right, #e5e5e5, #1099ff99);
   color: #1099ff;
 }
 
@@ -9,7 +9,18 @@
 }
 
 .precious-metals-container h2 {
-  margin-bottom: 3%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 0.5px solid #7f8fab44;
+}
+
+.precious-metals-container p {
+  margin-bottom: 3rem;
+}
+
+p.metals-note {
+  margin-top: 3rem;
+  margin-bottom: 0;
 }
 
 .card-body {

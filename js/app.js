@@ -557,6 +557,7 @@ async function plotGraph() {
 // ----------------------------------------------------------------------------
 
 function initializeWebPage() {
+  displayNavBarOnScroll();
   coinFlipper();
   initExchangeCTA();
   initializeCurrencyPairSection();
@@ -564,3 +565,21 @@ function initializeWebPage() {
 }
 
 initializeWebPage();
+
+
+// ----------------------------------------------------------------------------
+// Nav Bar
+// ----------------------------------------------------------------------------
+// displayNavBarOnScroll() - Displays NavBar on Scroll
+// ----------------------------------------------------------------------------
+function displayNavBarOnScroll() {
+
+  let navBarEle = document.getElementById("navigation");
+  let navBarOffsetHeight = `${navBarEle.offsetHeight}px`;
+
+  console.log(`Nav Bar Offset is ${navBarOffsetHeight}`);
+  navBarEle.addEventListener('click', function() {
+    document.body.style.paddingTop = `${navBarEle.offsetHeight}px`;
+  });
+
+}

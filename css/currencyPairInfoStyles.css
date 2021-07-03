@@ -1,17 +1,10 @@
 #curr-pair-info {
   background-color: #e5e5e5;
-  background-image: linear-gradient(to right, #1099ff, #e5e5e5);
+  background-image: linear-gradient(to right, #1099ff99, #e5e5e5);
   color: #1099ff;
 }
 
 .curr-pair-info-container {
-  /* display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(100px, auto);
-  grid-gap: 1%;
-  justify-content: space-between;
-  align-items: center; */
   padding: 3% 7%;
   text-align: center;
   /* border: 2px solid red; */
@@ -19,7 +12,14 @@
 
 .curr-pair-change-container h2 {
   text-align: right;
-  margin-bottom: 5%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 0.5px solid #7f8fab44;
+}
+
+.curr-pair-change-container p {
+  text-align: right;
+  margin-bottom: 3rem;
 }
 
 .rate-down {
@@ -32,7 +32,7 @@
 
 .curr-pair td, .curr-pair th {
   padding: 3%;
-  border-bottom: 0.5px solid #7f8fab;
+  border-bottom: 0.5px solid #7f8fab44;
 }
 
 .curr-pair-head {
