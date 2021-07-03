@@ -67,7 +67,7 @@ Navigation
    border-radius: 20px;
    /* height: 5rem; */
    /* line-height: 5px; */
-   color: #eee;
+   color: #eeeeee;
    font-family: Helvetica;
    width: 10rem;
    font-size: 1em;
@@ -78,7 +78,7 @@ Navigation
    -moz-box-shadow: 1px 1px 20px 0 #18a4e0;
    box-shadow: 1px 1px 20px 0 #18a4e0;
    text-shadow: 1px 1px 20px #18a4e0;
-   border: solid #eee 1px;
+   border: solid #eeeeee 1px;
    text-decoration: none;
    display: inline-block;
    cursor: pointer;

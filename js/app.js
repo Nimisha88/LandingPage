@@ -1,29 +1,14 @@
 // ----------------------------------------------------------------------------
-// Hero - Coin Flip
-// Function to loop through currency icons to display at an interval of 4 secs
+// ----------------------------------------------------------------------------
+// Global Constants and Variables
+// ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
+// Hero - Coin Flip
 const coinIconList = ["fa-dollar-sign", "fa-rupee-sign", "fa-euro-sign", "fa-ruble-sign", "fa-yen-sign", "fa-pound-sign"];
 const coinLogoIcon = document.querySelector(".coin-logo-icon");
 
-function coinFlipper() {
-
-  let coinIconLooper = 1;
-
-  setInterval(() => {
-    coinLogoIcon.classList.remove(...coinIconList);
-    coinLogoIcon.classList.add(coinIconList[coinIconLooper++ % coinIconList.length]);
-  }, 4000);
-
-}
-
-coinFlipper();
-
-
-// ----------------------------------------------------------------------------
-// API Variables
-// ----------------------------------------------------------------------------
-
+// APIs
 const coinbaseBaseURL = "https://api.coinbase.com/";
 const coinbaseExchangeRateAPI = "/v2/exchange-rates";
 const coinbaseCurrenciesAPI = "/v2/currencies";
@@ -31,12 +16,10 @@ const coinbaseTimeAPI = "/v2/time";
 const frankfuterBaseURL = "https://api.frankfurter.app/";
 const frankfuterCurrenciesAPI = "currencies";
 const frankfuterLatestRatesAPI = "latest";
+const metalsAPIBaseURL = "https://api.metals.live/";
+const allMetalsLatestPrice = "v1/spot";
 
-
-// ----------------------------------------------------------------------------
-// Initiallize Exchange CTA
-// ----------------------------------------------------------------------------
-
+// Exchange CTA and Graph
 const baseCurrDropDown = document.getElementById("baseCurrencyDD");
 const convCurrDropDown = document.getElementById("convCurrencyDD");
 const baseCurrNameSpan = document.getElementById("baseCurrName")
@@ -55,6 +38,41 @@ let convCurrID;
 let lastUpdatedAt;
 let dataForGraph;
 let currChart;
+
+// Precious Metals
+const metalSpotPriceEles = document.querySelectorAll(".metal-spot-price");
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// Function declarations and their short descriptions
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// Hero - Coin Flip
+// ----------------------------------------------------------------------------
+// coinFlipper() - Change currency icon every 4 secs
+// ----------------------------------------------------------------------------
+
+function coinFlipper() {
+
+  let coinIconLooper = 1;
+
+  setInterval(() => {
+    coinLogoIcon.classList.remove(...coinIconList);
+    coinLogoIcon.classList.add(coinIconList[coinIconLooper++ % coinIconList.length]);
+  }, 4000);
+
+}
+
+
+// ----------------------------------------------------------------------------
+// Exchange CTA and Graph
+// ----------------------------------------------------------------------------
+// getConvRates(baseCurr, convCurr) - Gets the conversion rate
+// getLastUpdatedAt() - Gets the last server update time stamp
+// initExchangeCTA() - Initializes Exchange CTA and Graph
+// ----------------------------------------------------------------------------
 
 let getConvRates = (baseCurr, convCurr) => (rates[convCurr]/rates[baseCurr]).toFixed(2);
 let getLastUpdatedAt = () => lastUpdatedAt;
@@ -76,11 +94,13 @@ async function initExchangeCTA() {
   plotGraph();
 }
 
-initExchangeCTA();
-
 
 // ----------------------------------------------------------------------------
 // Fetch Currencies and Populate Dropdowns
+// ----------------------------------------------------------------------------
+// currencyDropDownElement(eleID, eleName) - Creates a Drop Down Option element
+// setCurrenciesInConvCTA() - Initializes Exchange CTA Currency Drop Downs
+// fetchCurrencies() - Fetches currencies through an API call
 // ----------------------------------------------------------------------------
 
 let currencyDropDownElement = (eleID, eleName) => {
@@ -132,6 +152,8 @@ async function fetchCurrencies() {
 // ----------------------------------------------------------------------------
 // Fetch Exchange Rates
 // ----------------------------------------------------------------------------
+// fetchRates() - Fetches latest Exchange Rates through an API call
+// ----------------------------------------------------------------------------
 
 async function fetchRates() {
 
@@ -159,6 +181,8 @@ async function fetchRates() {
 // ----------------------------------------------------------------------------
 // Fetch Last Server Update TimeStamp
 // ----------------------------------------------------------------------------
+// fetchLastServerUpdateTS() - Fetches last server update time through API
+// ----------------------------------------------------------------------------
 
 async function fetchLastServerUpdateTS() {
 
@@ -179,10 +203,15 @@ async function fetchLastServerUpdateTS() {
 
 }
 
+
 // ----------------------------------------------------------------------------
-// Exchange CTA Event Listeners
-// changeCurrNameInExchangeCTA - Change Base/Conv Currency Name in Exchange CTA
-// changeAmtInputInExchangeCTA - Change Base/Conv Amount in Exchange CTA
+// Exchange CTA (Currency Amount and Drop Down) Event Listeners
+// ----------------------------------------------------------------------------
+// changeCurrNameInExchangeCTA(currNamePlaceholder, currDropDown) -->
+//          Changes Base/Conv Currency Name in Exchange CTA
+// changeAmtInputInExchangeCTA(baseOrConv, baseCurr, convCurr) -->
+//          Changes Base/Conv Amount in Exchange CTA
+// addEventListenersOnExchangeCTA() - Adds Event Listeners & expected actions
 // ----------------------------------------------------------------------------
 
 function changeCurrNameInExchangeCTA(currNamePlaceholder, currDropDown) {
@@ -238,7 +267,18 @@ function addEventListenersOnExchangeCTA() {
 
 
 // ----------------------------------------------------------------------------
-// Initialize Currency Pair
+// Currency Pair
+// ----------------------------------------------------------------------------
+// CurrencyPair() - A base and conversion currency pair Object
+// getPopularCurrencyPairs() - Gets an array of Popular Currency Pairs
+// getPrevUpdateDate(date) - Gets second last update date
+// fetchCurrPairData(amt, baseCurr, convCurr) -->
+//          Fetches currency pair data to calculate last rates update date
+// fetchCurrPairDateWiseData(date, baseCurr, convCurr) -->
+//          Fetches date wise currency pair data to calculate change in rates
+// populateCurrencyPairHTML(currPairs) -->
+//          Populates appropriate currency pair, rate and change in HTML
+// initializeCurrencyPairSection() - Initializes Currency Pair Section
 // ----------------------------------------------------------------------------
 function CurrencyPair(baseCurr, convCurr) {
   this.baseCurr = baseCurr;
@@ -351,15 +391,13 @@ async function initializeCurrencyPairSection() {
 
 }
 
-initializeCurrencyPairSection();
-
 
 // ----------------------------------------------------------------------------
 // Metals API
 // ----------------------------------------------------------------------------
-const metalsAPIBaseURL = "https://api.metals.live/";
-const allMetalsLatestPrice = "v1/spot";
-const metalSpotPriceEles = document.querySelectorAll(".metal-spot-price");
+// fetchMetalRates() - Fetches spot prices for precious metals through API
+// initializeMetalsInfo() - Initializes Precious Metal section
+// ----------------------------------------------------------------------------
 
 async function fetchMetalRates() {
   try {
@@ -388,11 +426,16 @@ async function initializeMetalsInfo() {
 
 }
 
-initializeMetalsInfo();
-
 
 // ----------------------------------------------------------------------------
 // Fetch data for Graph
+// ----------------------------------------------------------------------------
+// fetchDataForGraph() - Fetches data for graph through an API call
+// showOrHideGraphContainer() - Hides graph if base & conv currency are same
+// fetchXAxisTimeLineData() - Fetches X axis (TimeLine) data as array
+// fetchYAxisCurrData() - Fetches Y axis (Rates) data as array
+// plotGraph() - Using Chart.js Line Chart, plots graph of exchange rates for
+//               last 3 months
 // ----------------------------------------------------------------------------
 
 async function fetchDataForGraph() {
@@ -424,11 +467,6 @@ function showOrHideGraphContainer() {
     return false;
   }
 }
-
-
-// ----------------------------------------------------------------------------
-// Graph - chart.js
-// ----------------------------------------------------------------------------
 
 async function fetchXAxisTimeLineData() {
   const graphDataKeys = Object.keys(dataForGraph);
@@ -484,7 +522,7 @@ async function plotGraph() {
         {
           data: graphYAxisData,
           label: `${convCurrNameSpan.textContent} against ${baseCurrNameSpan.textContent}`,
-          borderColor: "#3e95cd",
+          borderColor: "#1099ff",
           fill: false
         }
       ]
@@ -511,3 +549,18 @@ async function plotGraph() {
     },
   });
 }
+
+// ----------------------------------------------------------------------------
+// Web Page
+// ----------------------------------------------------------------------------
+// initializeWebPage() - Initializes the Web Page on Load
+// ----------------------------------------------------------------------------
+
+function initializeWebPage() {
+  coinFlipper();
+  initExchangeCTA();
+  initializeCurrencyPairSection();
+  initializeMetalsInfo();
+}
+
+initializeWebPage();
