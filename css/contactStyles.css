@@ -11,8 +11,8 @@
 }
 
 .contact-container h2 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  /* margin-top: 1rem; */
+  margin-bottom: 1.5rem;
   border-bottom: 0.5px solid #e5e5e544;
 }
 
@@ -23,7 +23,10 @@
 }
 
 .contact-container p {
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
+  border-bottom: 0.5px solid #e5e5e544;
+  padding: 0 5rem 1rem;
+  /* text-align: left; */
 }
 
 /* Remove inherit link styles */

@@ -87,3 +87,9 @@ Navigation
    border-radius: 20px;
    text-decoration: none;
 }
+
+/* NavBar scroll Offset */
+.navbar-scroll-offset {
+  height: 61px;
+  display: block;
+}

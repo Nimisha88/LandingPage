@@ -4,7 +4,11 @@
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
-// Hero - Coin Flip
+// Navbar
+const navbarNavLinks = document.querySelectorAll(".navbar-collapse.collapse a");
+let activeNavbarNavLink = navbarNavLinks[0];
+
+// Coin Flip
 const coinIconList = ["fa-dollar-sign", "fa-rupee-sign", "fa-euro-sign", "fa-ruble-sign", "fa-yen-sign", "fa-pound-sign"];
 const coinLogoIcon = document.querySelector(".coin-logo-icon");
 
@@ -557,7 +561,8 @@ async function plotGraph() {
 // ----------------------------------------------------------------------------
 
 function initializeWebPage() {
-  displayNavBarOnScroll();
+  navbarEventsOnClick();
+  navbarEventsOnScroll();
   coinFlipper();
   initExchangeCTA();
   initializeCurrencyPairSection();
@@ -579,7 +584,50 @@ function displayNavBarOnScroll() {
 
   console.log(`Nav Bar Offset is ${navBarOffsetHeight}`);
   navBarEle.addEventListener('click', function() {
-    document.body.style.paddingTop = `${navBarEle.offsetHeight}px`;
+    // document.body.style.paddingTop = `${navBarEle.offsetHeight}px`;
   });
 
+}
+
+function navbarEventsOnClick() {
+  let hamburgerCollapse = document.querySelector(".navbar-collapse.collapse");
+
+  hamburgerCollapse.addEventListener("click", () => {
+    if (window.innerWidth < 768) {
+      hamburgerCollapse.classList.remove("show");
+    }
+  });
+
+  Array.from(navbarNavLinks).map((navLink) => {
+    navLink.addEventListener("click", (event) => {
+    activeNavbarNavLink.classList.remove("active");
+    activeNavbarNavLink = event.target;
+    activeNavbarNavLink.classList.add("active");
+    })
+  });
+}
+
+function navbarEventsOnScroll() {
+  const targets = document.querySelectorAll('.page-section');
+
+  let options = {
+    threshold: [0.5]
+  }
+
+  function handleIntersection(entries) {
+    entries.map((entry) => {
+      if (entry.isIntersecting) {
+        // console.log(entry.target.id + "is now visible");
+        activeNavbarNavLink.classList.remove("active");
+        activeNavbarNavLink = document.querySelector(`a[href="#${entry.target.id}"]`);
+        activeNavbarNavLink.classList.add("active");
+      }
+    });
+  }
+
+  const observer = new IntersectionObserver(handleIntersection, options);
+
+  targets.forEach((target) => {
+    observer.observe(target);
+  });
 }
