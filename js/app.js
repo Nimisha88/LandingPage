@@ -5,8 +5,9 @@
 // ----------------------------------------------------------------------------
 
 // Navbar
-const navbarNavLinks = document.querySelectorAll(".navbar-collapse.collapse a");
-let activeNavbarNavLink = navbarNavLinks[0];
+const navbarContainer = document.querySelector("#navbarNav");
+let navbarNavLinks;
+let activeNavbarNavLink;
 
 // Coin Flip
 const coinIconList = ["fa-dollar-sign", "fa-rupee-sign", "fa-euro-sign", "fa-ruble-sign", "fa-yen-sign", "fa-pound-sign"];
@@ -51,6 +52,124 @@ const metalSpotPriceEles = document.querySelectorAll(".metal-spot-price");
 // Function declarations and their short descriptions
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// Nav Bar
+// ----------------------------------------------------------------------------
+// NavbarLink - Link Object with Name and Href properties
+// getNavbarLinks() - Gets Navbar Links to be initiallized
+// navbarEventsOnClick() - Collapses Hamburger Menu on Click
+// navbarEventsOnScroll() - Navbar Active State implementation on Scroll
+// getNavbarNavLinkElement(navbarLink) - Gets List Element with Link
+// createNavLinksUnorderedList() - Create unordered list of Nav Links
+// initializeNavbar() - Initializes Navbar
+// ----------------------------------------------------------------------------
+
+function NavbarLink(name, href) {
+  this.name = name;
+  this.href = href;
+}
+
+function getNavbarLinks() {
+  let navbarLinks = [];
+  navbarLinks.push(new NavbarLink("Home", "#hero"));
+  navbarLinks.push(new NavbarLink("Calculator", "#exchange-cta"));
+  navbarLinks.push(new NavbarLink("QuickLook", "#curr-pair-info"));
+  navbarLinks.push(new NavbarLink("Metals", "#precious-metals"));
+  navbarLinks.push(new NavbarLink("Contact", "#contact"));
+  return navbarLinks;
+}
+
+function navbarEventsOnClick() {
+  navbarContainer.addEventListener("click", () => {
+    if (window.innerWidth < 768) {
+      navbarContainer.classList.remove("show");
+    }
+  });
+
+  Array.from(navbarNavLinks).map((navLink) => {
+    navLink.addEventListener("click", (event) => {
+    activeNavbarNavLink.classList.remove("active");
+    activeNavbarNavLink = event.target;
+    activeNavbarNavLink.classList.add("active");
+    })
+  });
+
+  window.addEventListener("scroll", () => {
+    if (window.innerWidth < 768) {
+      navbarContainer.classList.remove("show");
+    }
+  });
+}
+
+function navbarEventsOnScroll() {
+  const targets = document.querySelectorAll('.page-section');
+
+  let options = {
+    threshold: [0.5]
+  }
+
+  function handleIntersection(entries) {
+    entries.map((entry) => {
+      if (entry.isIntersecting) {
+        // console.log(entry.target.id + "is now visible");
+        activeNavbarNavLink.classList.remove("active");
+        activeNavbarNavLink = document.querySelector(`a[href="#${entry.target.id}"]`);
+        activeNavbarNavLink.classList.add("active");
+      }
+    });
+  }
+
+  const observer = new IntersectionObserver(handleIntersection, options);
+
+  targets.forEach((target) => {
+    observer.observe(target);
+  });
+}
+
+
+function getNavbarNavLinkElement(navbarLink) {
+  let listEle = document.createElement("li");
+  let linkEle = document.createElement("a");
+
+  // Make link element
+  linkEle.classList.add("nav-link");
+  linkEle.setAttribute("href", navbarLink.href);
+  linkEle.textContent = navbarLink.name;
+
+  // Make list element
+  listEle.classList.add("nav-item");
+  listEle.appendChild(linkEle);
+
+  return listEle;
+}
+
+function createNavLinksUnorderedList() {
+  let navbarUnOrderedList = document.createElement('ul');
+  navbarUnOrderedList.classList.add("navbar-nav", "ms-auto");
+
+  let pageSections = getNavbarLinks();
+
+  // Add list elements with link
+  for (section of pageSections) {
+    navbarUnOrderedList.appendChild(getNavbarNavLinkElement(section));
+  }
+
+  // Add it to the container on page
+  navbarContainer.appendChild(navbarUnOrderedList);
+
+  // Initialize Active Link
+  navbarNavLinks = document.querySelectorAll(".navbar-collapse.collapse a");
+  activeNavbarNavLink = navbarNavLinks[0];
+  activeNavbarNavLink.classList.add("active");
+}
+
+function initializeNavbar() {
+  createNavLinksUnorderedList();
+  navbarEventsOnClick();
+  navbarEventsOnScroll(); //Uses Intersection Observer API
+}
+
 
 // ----------------------------------------------------------------------------
 // Hero - Coin Flip
@@ -561,8 +680,7 @@ async function plotGraph() {
 // ----------------------------------------------------------------------------
 
 function initializeWebPage() {
-  navbarEventsOnClick();
-  navbarEventsOnScroll();
+  initializeNavbar();
   coinFlipper();
   initExchangeCTA();
   initializeCurrencyPairSection();
@@ -570,64 +688,3 @@ function initializeWebPage() {
 }
 
 initializeWebPage();
-
-
-// ----------------------------------------------------------------------------
-// Nav Bar
-// ----------------------------------------------------------------------------
-// displayNavBarOnScroll() - Displays NavBar on Scroll
-// ----------------------------------------------------------------------------
-function displayNavBarOnScroll() {
-
-  let navBarEle = document.getElementById("navigation");
-  let navBarOffsetHeight = `${navBarEle.offsetHeight}px`;
-
-  console.log(`Nav Bar Offset is ${navBarOffsetHeight}`);
-  navBarEle.addEventListener('click', function() {
-    // document.body.style.paddingTop = `${navBarEle.offsetHeight}px`;
-  });
-
-}
-
-function navbarEventsOnClick() {
-  let hamburgerCollapse = document.querySelector(".navbar-collapse.collapse");
-
-  hamburgerCollapse.addEventListener("click", () => {
-    if (window.innerWidth < 768) {
-      hamburgerCollapse.classList.remove("show");
-    }
-  });
-
-  Array.from(navbarNavLinks).map((navLink) => {
-    navLink.addEventListener("click", (event) => {
-    activeNavbarNavLink.classList.remove("active");
-    activeNavbarNavLink = event.target;
-    activeNavbarNavLink.classList.add("active");
-    })
-  });
-}
-
-function navbarEventsOnScroll() {
-  const targets = document.querySelectorAll('.page-section');
-
-  let options = {
-    threshold: [0.5]
-  }
-
-  function handleIntersection(entries) {
-    entries.map((entry) => {
-      if (entry.isIntersecting) {
-        // console.log(entry.target.id + "is now visible");
-        activeNavbarNavLink.classList.remove("active");
-        activeNavbarNavLink = document.querySelector(`a[href="#${entry.target.id}"]`);
-        activeNavbarNavLink.classList.add("active");
-      }
-    });
-  }
-
-  const observer = new IntersectionObserver(handleIntersection, options);
-
-  targets.forEach((target) => {
-    observer.observe(target);
-  });
-}
