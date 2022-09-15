@@ -1,10 +1,19 @@
 # LandingPage
 This project is a design of a Currency Exchange Landing Page using HTML, CSS, JavaScript and Bootstrap, fetching real time data through Public API calls 
 
+## Application Preview
+https://user-images.githubusercontent.com/29170466/190375333-5f3874b8-22af-4db0-a66b-102f95266249.mov
+
 ## Public APIs used for Data
 * [**CoinBase**](https://api.coinbase.com/)
 * [**Frankfuter**](https://api.frankfurter.app/)
 * [**MetalsAPI**](https://api.metals.live/)
+
+## Installation Instruction
+* Download the project and `cd` to the main folder
+* Run `npm install` to install all project dependencies
+* Run `npm run server` to start the local server
+* Open browser and go to `http://localhost:3000/` to access the webpage
 
 ## Features
 1. #### Nav Bar
