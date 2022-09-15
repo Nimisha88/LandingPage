@@ -7,6 +7,10 @@ Navigation
   text-align: right;
 }
 
+.nav-icon {
+  transform: scale(0.6);
+}
+
 /* Hero */
 #hero {
   background-color: #1089ff;
